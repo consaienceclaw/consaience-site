@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consaience — AI-Augmented Healthcare Intelligence</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0F1D26;
+            --accent-green: #C4D93E;
+            --text-white: #FFFFFF;
+            --text-silver: #B8C5D0;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-silver);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 0;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 0.1em;
+            color: var(--text-white);
+            text-align: center;
+        }
+
+        .tagline {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-silver);
+            font-weight: 300;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 6rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-silver);
+        }
+
+        /* Companies Section */
+        .companies {
+            padding: 2rem 0 4rem;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .company-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .company-card:nth-child(1) { animation-delay: 0.4s; }
+        .company-card:nth-child(2) { animation-delay: 0.6s; }
+        .company-card:nth-child(3) { animation-delay: 0.8s; }
+
+        .company-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(196, 217, 62, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .company-card h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .company-card .subtitle {
+            font-size: 0.95rem;
+            color: var(--accent-green);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .company-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: var(--text-silver);
+        }
+
+        .company-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .company-card li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .company-card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+        }
+
+        .visit-link {
+            display: inline-block;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .visit-link:hover {
+            border-color: var(--accent-green);
+            background: rgba(196, 217, 62, 0.1);
+            color: var(--accent-green);
+        }
+
+        .visit-link::after {
+            content: " →";
+            margin-left: 0.5rem;
+        }
+
+        /* Founder Section */
+        .founder {
+            padding: 4rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--card-border);
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1s forwards;
+        }
+
+        .founder h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--text-white);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .founder-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .founder h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .founder ul {
+            list-style: none;
+        }
+
+        .founder li {
+            padding-left: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .founder li::before {
+            content: "•";
+            position: absolute;
+            left: 0.5rem;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-silver);
+            font-size: 0.9rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 1.2s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .companies-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .company-card {
+                padding: 2rem;
+            }
+
+            .company-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .founder h2 {
+                font-size: 1.7rem;
+            }
+
+            .founder h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 2rem 0;
+            }
+
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .company-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">consaience</div>
+            <p class="tagline">AI-Augmented Healthcare Intelligence</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Empowering Healthcare Through<br>Intelligent AI Solutions</h1>
+                <p>A consulting group specialized in AI augmentation for biotechnology, medtech, and healthcare professionals.</p>
+            </div>
+        </section>
+
+        <section class="companies">
+            <div class="container">
+                <div class="companies-grid">
+                    <div class="company-card">
+                        <h2>BotNursery</h2>
+                        <p class="subtitle">Growing AI agents that know your clients</p>
+                        <p>Personalized AI assistants for healthcare professionals. Train intelligent agents that learn your unique style and manage client communication 24/7.</p>
+                        <a href="https://www.botnursery.ai" target="_blank" class="visit-link">Visit BotNursery</a>
+                    </div>
+
+                    <div class="company-card">
+                        <h2>BioAlma</h2>
+                        <p class="subtitle">Intelligence platforms for biotech & medtech</p>
+                        <p>Custom AI-powered dashboards delivering competitive intelligence, clinical trial tracking, pipeline analysis, and market insights. Each client receives a dedicated platform at clientname.bioalma.ai.</p>
+                        <a href="https://www.bioalma.ai" target="_blank" class="visit-link">Visit BioAlma</a>
+                    </div>
+
+                    <div class="company-card">
+                        <h2>SambaTrials</h2>
+                        <p class="subtitle">Medical affairs & patient finding in Brazil</p>
+                        <p>Leverage 15+ years of expertise navigating Brazil's regulatory landscape. We help biopharmaceutical companies identify clinical trial sites, PIs, and patients across Brazil.</p>
+                        <ul>
+                            <li>Site & PI identification</li>
+                            <li>Patient recruitment</li>
+                            <li>ANVISA regulatory support</li>
+                            <li>Medical affairs strategy</li>
+                        </ul>
+                        <a href="https://www.sambatrials.com" target="_blank" class="visit-link">Visit SambaTrials</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="founder">
+            <div class="container">
+                <h2>About the Founder</h2>
+                <div class="founder-content">
+                    <h3>Daniel de Moraes Branco</h3>
+                    <ul>
+                        <li>Neurologist and neuroscientist by training, Wharton MBA</li>
+                        <li>Senior Director of Corporate Development at Artiva Biotherapeutics (NK-cell therapies for autoimmune diseases)</li>
+                        <li>Created the first medical website in Brazil (1995) — an Atlas of Human Histology</li>
+                        <li>Founded Medicinia — patient health tracking platforms (digital health pioneer)</li>
+                        <li>Lifetime entrepreneur in digital health, now applying AI to healthcare</li>
+                        <li>Brazilian-born, U.S.-based (EB-1 extraordinary ability visa)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2026 Consaience
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add subtle parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = 1 - (scrolled / 600);
+            }
+        });
+    </script>
+</body>
+</html>

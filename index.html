@@ -114,6 +114,27 @@
             transform: translateY(-5px);
         }
 
+        .company-card .card-logo {
+            height: 64px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .company-card .card-logo-text {
+            height: 64px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, #4ecdc4, #7bc67e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .company-card h2 {
             font-size: 1.8rem;
             font-weight: 400;
@@ -320,7 +341,28 @@
                 padding: 2rem;
             }
 
-            .company-card h2 {
+            .company-card .card-logo {
+            height: 64px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+        }
+
+        .company-card .card-logo-text {
+            height: 64px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, #4ecdc4, #7bc67e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .company-card h2 {
                 font-size: 1.5rem;
             }
 
@@ -387,6 +429,7 @@
             <div class="container">
                 <div class="companies-grid">
                     <div class="company-card">
+                        <img src="bn-logo.png" alt="BotNursery" class="card-logo">
                         <h2>BotNursery</h2>
                         <p class="subtitle">Growing AI agents that know your clients</p>
                         <p>Personalized AI assistants for healthcare professionals. Train intelligent agents that learn your unique style and manage client communication 24/7.</p>
@@ -394,6 +437,7 @@
                     </div>
 
                     <div class="company-card">
+                        <div class="card-logo-text">BioAlma</div>
                         <h2>BioAlma</h2>
                         <p class="subtitle">Intelligence platforms for biotech & medtech</p>
                         <p>Custom AI-powered dashboards delivering competitive intelligence, clinical trial tracking, pipeline analysis, and market insights. Each client receives a dedicated platform at clientname.bioalma.ai.</p>
@@ -401,6 +445,7 @@
                     </div>
 
                     <div class="company-card">
+                        <img src="sambatrials-logo.svg" alt="SambaTrials" class="card-logo">
                         <h2>SambaTrials</h2>
                         <p class="subtitle">Medical affairs & patient finding in Brazil</p>
                         <p>Leverage 15+ years of expertise navigating Brazil's regulatory landscape. We help biopharmaceutical companies identify clinical trial sites, PIs, and patients across Brazil.</p>

@@ -196,6 +196,22 @@
         .founder-content {
             max-width: 800px;
             margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .founder-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid var(--accent-green);
+        }
+
+        .founder-text {
+            flex: 1;
         }
 
         .founder h3 {
@@ -312,6 +328,17 @@
                 font-size: 1.7rem;
             }
 
+            .founder-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .founder-photo {
+                width: 120px;
+                height: 120px;
+            }
+
             .founder h3 {
                 font-size: 1.3rem;
             }
@@ -393,9 +420,12 @@
             <div class="container">
                 <h2>About the Founder</h2>
                 <div class="founder-content">
-                    <h3>Daniel Branco</h3>
-                    <p class="founder-title">Founder, BioAlma & Consaience</p>
-                    <p>Daniel is a biotech consultant with deep experience in clinical development intelligence, competitive analysis, and AI-powered data platforms. He's built intelligence systems for biotech companies ranging from pre-clinical startups to public pharma—and now he's building them for you.</p>
+                    <img src="daniel.jpg" alt="Daniel Branco" class="founder-photo">
+                    <div class="founder-text">
+                        <h3>Daniel Branco</h3>
+                        <p class="founder-title">Founder, BioAlma & Consaience</p>
+                        <p>Daniel is a biotech consultant with deep experience in clinical development intelligence, competitive analysis, and AI-powered data platforms. He's built intelligence systems for biotech companies ranging from pre-clinical startups to public pharma—and now he's building them for you.</p>
+                    </div>
                 </div>
             </div>
         </section>

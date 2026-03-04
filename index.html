@@ -1,510 +1,649 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consaience — AI-Augmented Healthcare Intelligence</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Consaience — AI-Augmented Healthcare Intelligence (Hero + Projects)</title>
+  <meta name="description" content="A consulting group specialized in AI augmentation for biotechnology, medtech, and healthcare professionals." />
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-        :root {
-            --bg-dark: #053B47;
-            --accent-green: #C4D93E;
-            --text-white: #FFFFFF;
-            --text-silver: #B8C5D0;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-        }
+  <style>
+    :root{
+      /* ===== Consaience Palette (EXATA) ===== */
+      --bg: #053B47;                 /* Background */
+      --accent: #C4D93E;             /* Verde destaque */
+      --text: #FFFFFF;               /* Branco títulos */
+      --muted: #B8C5D0;              /* Cinza corpo */
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-silver);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.08);
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --shadow2: 0 10px 28px rgba(0,0,0,.25);
 
-        /* Header */
-        header {
-            padding: 3rem 0;
-            opacity: 0;
-            animation: fadeInDown 0.8s ease forwards;
-        }
+      --r: 18px;
+      --r2: 24px;
+      --max: 1140px;
+    }
 
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 200;
-            letter-spacing: 0.1em;
-            color: var(--text-white);
-            text-align: center;
-        }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
 
-        .tagline {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            color: var(--text-silver);
-            font-weight: 300;
-        }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+    }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 4rem 0 6rem;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.3s forwards;
-        }
+    h1 {
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 300;
-            color: var(--text-white);
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
+    h2 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--text-silver);
-        }
+    h3 {
+      font-weight: 600;
+    }
 
-        /* Companies Section */
-        .companies {
-            padding: 2rem 0 4rem;
-        }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
 
-        .companies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    /* ===== Topbar ===== */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(5,59,71,.82), rgba(5,59,71,.52));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .brand img{
+      width:44px; height:44px;
+    }
+    .brand .name{ display:flex; flex-direction:column; line-height:1.05; }
+    .brand .name strong{
+      font-family: "Space Grotesk", sans-serif;
+      font-size:14px; 
+      font-weight: 600;
+      letter-spacing:.12em; 
+      text-transform: lowercase; 
+      opacity:.98;
+    }
+    .brand .name span{ font-size:12px; color: rgba(184,197,208,.85); }
 
-        .company-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
+    .navlinks{
+      display:flex; align-items:center; gap:18px;
+      color: rgba(184,197,208,.92);
+      font-size: 13px;
+    }
+    .navlinks a{ opacity:.92; }
+    .navlinks a:hover{ opacity:1; color: var(--text); }
 
-        .company-card:nth-child(1) { animation-delay: 0.4s; }
-        .company-card:nth-child(2) { animation-delay: 0.6s; }
-        .company-card:nth-child(3) { animation-delay: 0.8s; }
+    .navcta{ display:flex; gap:10px; align-items:center; }
 
-        .company-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(196, 217, 62, 0.3);
-            transform: translateY(-5px);
-        }
+    /* ===== Buttons ===== */
+    .btn{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      display:inline-flex; align-items:center; gap:10px;
+      box-shadow: 0 12px 25px rgba(0,0,0,.18);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, filter .18s ease;
+      cursor:pointer;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(196,217,62,.35);
+    }
+    
+    .card .btn:hover{
+      transform: translateY(-2px);
+      background: #C4D93E !important;
+      border-color: #C4D93E !important;
+      color: #000000 !important;
+      font-weight: 700;
+      text-shadow: none !important;
+      box-shadow: 0 14px 30px rgba(196,217,62,.25), 0 6px 12px rgba(0,0,0,.3);
+    }
+    .btn:active{ transform: translateY(0) scale(.99); }
 
-        .company-card .card-logo {
-            height: 64px;
-            margin-bottom: 1rem;
-            object-fit: contain;
-        }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(196,217,62,.96), rgba(196,217,62,.70));
+      border-color: rgba(196,217,62,.55);
+      color: #0E1E14;
+      box-shadow: 0 18px 50px rgba(196,217,62,.14), 0 18px 50px rgba(0,0,0,.25);
+    }
 
-        .company-card .card-logo-text {
-            height: 64px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            background: linear-gradient(135deg, #4ecdc4, #7bc67e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .dot{ width:9px; height:9px; border-radius:999px; background: currentColor; opacity:.92; }
 
-        .company-card h2 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            color: var(--text-white);
-            margin-bottom: 0.5rem;
-        }
+    /* ===== Hero ===== */
+    header{ padding: 26px 0 6px; }
+    .hero{
+      padding: 32px 0 48px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+    }
 
-        .company-card .subtitle {
-            font-size: 0.95rem;
-            color: var(--accent-green);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
+    .kicker{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      color: rgba(184,197,208,.92);
+      letter-spacing:.22em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 6px 0 10px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(32px, 4.2vw, 56px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .hl{
+      color: var(--accent);
+      text-shadow: 0 0 22px rgba(196,217,62,.16);
+    }
+    .lead{
+      margin: 14px 0 18px;
+      color: rgba(184,197,208,.92);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .heroActions{
+      display:flex; gap: 12px; flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
 
-        .company-card p {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            color: var(--text-silver);
-        }
+    /* ===== Projects now LIVE inside Hero ===== */
+    .heroProjectsWrap{
+      margin-top: 24px;
+    }
+    .heroProjectsHead{
+      padding: 0 0 28px;
+    }
+    .heroProjectsHead strong{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing:.10em;
+      text-transform: uppercase;
+      color: rgba(184,197,208,.95);
+      display:flex; align-items:center; gap:10px;
+    }
+    .pip{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 9px rgba(196,217,62,.10);
+      opacity:.95;
+    }
+    .heroProjectsHead span{
+      font-size: 13px;
+      color: rgba(184,197,208,.82);
+    }
 
-        .company-card ul {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 0;
+    }
 
-        .company-card li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            font-size: 0.95rem;
-        }
+    /* Card (Projects) — o mesmo estilo usado na seção Projects, só que agora no hero */
+    .card{
+      border-radius: var(--r2);
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      min-width:0;
+      display: flex;
+      flex-direction: column;
+      min-height: 580px;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(196,217,62,.38);
+      background: rgba(255,255,255,.06);
+    }
 
-        .company-card li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
-        }
+    .logoLine{
+      display:flex; align-items:center; gap:12px;
+      margin-bottom: 10px;
+      min-width:0;
+    }
+    .logoLine img{
+      width: 56px; height: 56px;
+      flex: 0 0 auto;
+    }
+    .card h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      margin-top: 6px;
+      color: rgba(184,197,208,.86);
+      font-size: 13px;
+      letter-spacing:.02em;
+    }
+    .body{
+      margin-top: 10px;
+      color: rgba(184,197,208,.92);
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    .bullets{
+      margin: 10px 0 0;
+      padding-left: 16px;
+      color: rgba(184,197,208,.92);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .bullets li{ margin: 4px 0; }
+    .bullets li::marker{ color: var(--accent); }
 
-        .visit-link {
-            display: inline-block;
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid var(--card-border);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
+    .foot{
+      margin-top: auto;
+      padding-top: 14px;
+      display:flex; justify-content:space-between; align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .tag{
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      color: rgba(184,197,208,.65);
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 4px 9px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
-        .visit-link:hover {
-            border-color: var(--accent-green);
-            background: rgba(196, 217, 62, 0.1);
-            color: var(--accent-green);
-        }
+    /* ===== Below-hero (Founder + Footer) ===== */
+    .section{ padding: 72px 0 48px; }
+    .sectionTitle{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+      margin-bottom: 32px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.02em;
+    }
+    .sectionTitle p{
+      margin:0;
+      color: rgba(184,197,208,.82);
+      font-size: 13px;
+    }
 
-        .visit-link::after {
-            content: " →";
-            margin-left: 0.5rem;
-        }
 
-        /* Founder Section */
-        .founder {
-            padding: 4rem 0;
-            margin-top: 3rem;
-            border-top: 1px solid var(--card-border);
-            opacity: 0;
-            animation: fadeIn 0.8s ease 1s forwards;
-        }
+    .aboutCard{
+      border-radius: var(--r2);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding: 18px;
+    }
+    .founder{
+      display:flex; align-items:center; gap: 14px;
+      padding: 18px;
+      border-radius: var(--r2);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow2);
+    }
+    .founder img{
+      width: 68px; height: 68px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 28px rgba(0,0,0,.18);
+      flex: 0 0 auto;
+    }
+    .founder .meta strong{ display:block; font-size: 16px; letter-spacing:-.01em; }
+    .founder .meta span{ color: rgba(184,197,208,.86); font-size: 13px; }
 
-        .founder h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--text-white);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
+    footer{
+      padding: 64px 0 48px;
+      color: rgba(184,197,208,.86);
+    }
+    .footRow{
+      display:flex; justify-content:space-between; align-items:center; gap: 16px;
+      flex-wrap:wrap;
+    }
+    .miniLinks{
+      display:flex; gap: 14px; flex-wrap:wrap;
+      font-size: 13px;
+    }
+    .miniLinks a{ opacity:.9; }
+    .miniLinks a:hover{ opacity:1; color: var(--text); }
 
-        .founder-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-        }
-
-        .founder-photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 2px solid var(--accent-green);
-        }
-
-        .founder-text {
-            flex: 1;
-        }
-
-        .founder h3 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-white);
-            margin-bottom: 0.5rem;
-        }
-
-        .founder-title {
-            color: var(--accent-green);
-            font-size: 1.1rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        .founder-content p:not(.founder-title) {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .founder ul {
-            list-style: none;
-        }
-
-        .founder li {
-            padding-left: 1.8rem;
-            margin-bottom: 1rem;
-            position: relative;
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .founder li::before {
-            content: "•";
-            position: absolute;
-            left: 0.5rem;
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 4rem;
-            border-top: 1px solid var(--card-border);
-            color: var(--text-silver);
-            font-size: 0.9rem;
-            opacity: 0;
-            animation: fadeIn 0.8s ease 1.2s forwards;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .logo {
-                font-size: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .companies-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .company-card {
-                padding: 2rem;
-            }
-
-            .company-card .card-logo {
-            height: 64px;
-            margin-bottom: 1rem;
-            object-fit: contain;
-        }
-
-        .company-card .card-logo-text {
-            height: 64px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            background: linear-gradient(135deg, #4ecdc4, #7bc67e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .company-card h2 {
-                font-size: 1.5rem;
-            }
-
-            .founder h2 {
-                font-size: 1.7rem;
-            }
-
-            .founder-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .founder-photo {
-                width: 120px;
-                height: 120px;
-            }
-
-            .founder h3 {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 2rem 0;
-            }
-
-            .hero {
-                padding: 2rem 0 3rem;
-            }
-
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
-
-            .company-card {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid3{ grid-template-columns: 1fr; }
+      .navlinks{ display:none; }
+      .brand{ min-width:auto; }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <div class="container">
-            <div class="logo"><img src="consaience-logo.png" alt="Consaience" style="height:48px;vertical-align:middle;margin-right:12px;border-radius:8px;">consaience</div>
-            <p class="tagline">AI-Augmented Healthcare Intelligence</p>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Consaience home">
+          <img src="consaience-icon.svg" alt="Consaience logo">
+          <div class="name">
+            <strong>consaience</strong>
+            <span>AI-Augmented Healthcare Intelligence</span>
+          </div>
+        </a>
+
+        <nav class="navlinks" aria-label="Sections">
+          <a href="#projects">Projects</a>
+          <a href="#about">Founder</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO (sem Signal Map, sem mini-cards) -->
+  <header id="top">
+    <div class="wrap hero">
+      <div class="heroGrid">
+        <div>
+          <div class="kicker">AI-Augmented Healthcare Intelligence</div>
+
+          <h1>Empowering Healthcare Through<br>
+            <span class="hl">Intelligent AI</span> Solutions
+          </h1>
+
+          <p class="lead">
+            A consulting group specialized in AI augmentation for biotechnology, medtech, and healthcare professionals.
+          </p>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Empowering Healthcare Through<br>Intelligent AI Solutions</h1>
-                <p>A consulting group specialized in AI augmentation for biotechnology, medtech, and healthcare professionals.</p>
+        <!-- Projects cards moved UP into Hero -->
+        <div id="projects" class="heroProjectsWrap" aria-label="Projects">
+          <div class="heroProjectsHead">
+            <div>
+              <strong style="font-size:16px; letter-spacing:-.01em; text-transform:none; color:var(--text);">Our Projects</strong>
+              <p style="margin:4px 0 0; font-size:13px; color:rgba(184,197,208,.78);">Specialized solutions for healthcare and biotech</p>
             </div>
-        </section>
+          </div>
 
-        <section class="companies">
-            <div class="container">
-                <div class="companies-grid">
-                    <div class="company-card">
-                        <a href="https://www.botnursery.ai" target="_blank"><img src="bn-logo.png" alt="BotNursery" class="card-logo"></a>
-                        <h2>BotNursery</h2>
-                        <p class="subtitle">Growing AI agents that know your clients</p>
-                        <p>Personalized AI assistants for healthcare professionals. Train intelligent agents that learn your unique style and manage client communication 24/7.</p>
-                        <a href="https://www.botnursery.ai" target="_blank" class="visit-link">Visit BotNursery</a>
-                    </div>
-
-                    <div class="company-card">
-                        <a href="https://www.bioalma.ai" target="_blank"><img src="bioalma-logo.png" alt="BioAlma" class="card-logo"></a>
-                        <h2>BioAlma</h2>
-                        <p class="subtitle">Intelligence platforms for biotech & medtech</p>
-                        <p>Custom AI-powered dashboards delivering competitive intelligence, clinical trial tracking, pipeline analysis, and market insights. Each client receives a dedicated platform at clientname.bioalma.ai.</p>
-                        <a href="https://www.bioalma.ai" target="_blank" class="visit-link">Visit BioAlma</a>
-                    </div>
-
-                    <div class="company-card">
-                        <a href="https://www.sambatrials.com" target="_blank"><img src="sambatrials-logo.png" alt="SambaTrials" class="card-logo"></a>
-                        <h2>SambaTrials</h2>
-                        <p class="subtitle">Medical affairs & patient finding in Brazil</p>
-                        <p>Leverage 15+ years of expertise navigating Brazil's regulatory landscape. We help biopharmaceutical companies identify clinical trial sites, PIs, and patients across Brazil.</p>
-                        <ul>
-                            <li>Site & PI identification</li>
-                            <li>Patient recruitment</li>
-                            <li>ANVISA regulatory support</li>
-                            <li>Medical affairs strategy</li>
-                        </ul>
-                        <a href="https://www.sambatrials.com" target="_blank" class="visit-link">Visit SambaTrials</a>
-                    </div>
+          <div class="grid3">
+            <!-- BotNursery -->
+            <article class="card">
+              <div class="logoLine">
+                <img src="bn-logo.png" alt="BotNursery logo">
+                <div>
+                  <h3>BotNursery</h3>
+                  <div class="sub">Growing AI agents that know your clients</div>
                 </div>
-            </div>
-        </section>
+              </div>
 
-        <section class="founder">
-            <div class="container">
-                <h2>About the Founder</h2>
-                <div class="founder-content">
-                    <img src="daniel.jpg" alt="Daniel Branco" class="founder-photo">
-                    <div class="founder-text">
-                        <h3>Daniel Branco</h3>
-                        <p class="founder-title">Founder, BioAlma & Consaience</p>
-                        <p>Daniel is a biotech consultant with deep experience in clinical development intelligence, competitive analysis, and AI-powered data platforms. He's built intelligence systems for biotech companies ranging from pre-clinical startups to public pharma—and now he's building them for you.</p>
+              <!-- Visual Area: Chat Interface -->
+              <div style="margin:14px 0; padding:22px; background:rgba(196,217,62,0.05); border:1px solid rgba(196,217,62,0.15); border-radius:12px; min-height:180px;">
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                  <!-- User message -->
+                  <div style="display:flex; justify-content:flex-end;">
+                    <div style="background:rgba(255,255,255,0.08); padding:10px 14px; border-radius:14px 14px 3px 14px; max-width:75%; font-size:12px; color:rgba(184,197,208,0.9); line-height:1.5;">
+                      How can I schedule an appointment?
                     </div>
+                  </div>
+                  <!-- Agent response -->
+                  <div style="display:flex; gap:10px;">
+                    <div style="width:24px; height:24px; border-radius:7px; background:rgba(196,217,62,0.25); flex:0 0 auto;"></div>
+                    <div style="background:rgba(196,217,62,0.12); padding:10px 14px; border-radius:14px 14px 14px 3px; max-width:80%; font-size:12px; color:rgba(255,255,255,0.85); line-height:1.5;">
+                      I'd be happy to help! I can schedule you for tomorrow at 3pm or Friday at 10am. Which works better for you?
+                    </div>
+                  </div>
+                  <!-- Agent follow-up -->
+                  <div style="display:flex; gap:10px;">
+                    <div style="width:24px; height:24px; border-radius:7px; background:rgba(196,217,62,0.25); flex:0 0 auto;"></div>
+                    <div style="background:rgba(196,217,62,0.12); padding:10px 14px; border-radius:14px 14px 14px 3px; max-width:70%; font-size:12px; color:rgba(255,255,255,0.85); line-height:1.5;">
+                      I can also send you a reminder 24 hours before.
+                    </div>
+                  </div>
+                  <!-- Typing indicator -->
+                  <div style="display:flex; gap:10px;">
+                    <div style="width:24px; height:24px; border-radius:7px; background:rgba(196,217,62,0.15); flex:0 0 auto;"></div>
+                    <div style="display:flex; gap:4px; align-items:center; padding:10px 14px;">
+                      <div style="width:5px; height:5px; border-radius:50%; background:rgba(196,217,62,0.7);"></div>
+                      <div style="width:5px; height:5px; border-radius:50%; background:rgba(196,217,62,0.7);"></div>
+                      <div style="width:5px; height:5px; border-radius:50%; background:rgba(196,217,62,0.7);"></div>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </section>
-    </main>
+              </div>
 
-    <footer>
-        <div class="container">
-            © 2026 Consaience
+              <div class="body">
+                Personalized AI assistants for healthcare professionals. Train intelligent agents that learn your unique style
+                and manage client communication 24/7.
+              </div>
+
+              <div class="foot">
+                <span class="tag">AI Assistants</span>
+                <a class="btn" href="https://www.botnursery.ai" target="_blank" rel="noopener">
+                  Visit BotNursery
+                </a>
+              </div>
+            </article>
+
+            <!-- BioAlma -->
+            <article class="card">
+              <div class="logoLine">
+                <img src="bioalma-logo.png" alt="BioAlma logo">
+                <div>
+                  <h3>BioAlma</h3>
+                  <div class="sub">Intelligence platforms for biotech &amp; medtech</div>
+                </div>
+              </div>
+
+              <!-- Visual Area: Mini Dashboard -->
+              <div style="margin:14px 0; padding:22px; background:rgba(196,217,62,0.05); border:1px solid rgba(196,217,62,0.15); border-radius:12px; min-height:180px;">
+                <!-- KPI Cards -->
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px;">
+                  <div style="background:rgba(196,217,62,0.1); padding:12px; border-radius:10px; border:1px solid rgba(196,217,62,0.2);">
+                    <div style="font-size:10px; color:rgba(184,197,208,0.7); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Trials Tracked</div>
+                    <div style="font-size:20px; font-weight:600; color:rgba(196,217,62,0.95);">247</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.06); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size:10px; color:rgba(184,197,208,0.7); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Competitors</div>
+                    <div style="font-size:20px; font-weight:600; color:rgba(255,255,255,0.85);">18</div>
+                  </div>
+                  <div style="background:rgba(255,255,255,0.06); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size:10px; color:rgba(184,197,208,0.7); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Insights</div>
+                    <div style="font-size:20px; font-weight:600; color:rgba(255,255,255,0.85);">52</div>
+                  </div>
+                </div>
+                <!-- Mini Chart -->
+                <div style="display:flex; align-items:flex-end; gap:5px; height:65px;">
+                  <div style="width:100%; height:45%; background:rgba(196,217,62,0.3); border-radius:2px;"></div>
+                  <div style="width:100%; height:60%; background:rgba(196,217,62,0.3); border-radius:2px;"></div>
+                  <div style="width:100%; height:75%; background:rgba(196,217,62,0.4); border-radius:2px;"></div>
+                  <div style="width:100%; height:55%; background:rgba(196,217,62,0.3); border-radius:2px;"></div>
+                  <div style="width:100%; height:85%; background:rgba(196,217,62,0.5); border-radius:2px;"></div>
+                  <div style="width:100%; height:70%; background:rgba(196,217,62,0.4); border-radius:2px;"></div>
+                </div>
+              </div>
+
+              <div class="body">
+                Custom AI-powered dashboards delivering competitive intelligence, clinical trial tracking, pipeline analysis,
+                and market insights. Each client receives a dedicated platform at <em>clientname.bioalma.ai</em>.
+              </div>
+
+              <div class="foot">
+                <span class="tag">Dashboards</span>
+                <a class="btn" href="https://www.bioalma.ai" target="_blank" rel="noopener">
+                  Visit BioAlma
+                </a>
+              </div>
+            </article>
+
+            <!-- SambaTrials -->
+            <article class="card">
+              <div class="logoLine">
+                <img src="sambatrials-logo.png" alt="SambaTrials logo">
+                <div>
+                  <h3>SambaTrials</h3>
+                  <div class="sub">Medical affairs &amp; patient finding in Brazil</div>
+                </div>
+              </div>
+
+              <!-- Visual Area: Map Network -->
+              <div style="margin:14px 0; padding:22px; background:rgba(196,217,62,0.05); border:1px solid rgba(196,217,62,0.15); border-radius:12px; position:relative; min-height:180px;">
+                <!-- Stylized Brazil outline -->
+                <svg viewBox="0 0 100 110" style="width:100%; height:150px; opacity:0.15;">
+                  <path d="M50,10 Q70,15 80,30 L85,50 Q85,70 75,85 L55,100 Q40,105 30,95 L15,75 Q10,55 15,35 L25,20 Q35,10 50,10" 
+                        fill="rgba(255,255,255,0.05)" stroke="rgba(196,217,62,0.3)" stroke-width="2"/>
+                </svg>
+                <!-- Site pins -->
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; padding:14px;">
+                  <!-- São Paulo -->
+                  <div style="position:absolute; left:30%; top:65%; display:flex; flex-direction:column; align-items:center; gap:2px;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:rgba(196,217,62,0.8); box-shadow:0 0 0 3px rgba(196,217,62,0.2);"></div>
+                    <div style="font-size:8px; color:rgba(196,217,62,0.9); font-weight:600;">SP</div>
+                  </div>
+                  <!-- Rio de Janeiro -->
+                  <div style="position:absolute; left:45%; top:70%; display:flex; flex-direction:column; align-items:center; gap:2px;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:rgba(196,217,62,0.8); box-shadow:0 0 0 3px rgba(196,217,62,0.2);"></div>
+                    <div style="font-size:8px; color:rgba(196,217,62,0.9); font-weight:600;">RJ</div>
+                  </div>
+                  <!-- Brasília -->
+                  <div style="position:absolute; left:40%; top:45%; display:flex; flex-direction:column; align-items:center; gap:2px;">
+                    <div style="width:8px; height:8px; border-radius:50%; background:rgba(196,217,62,0.8); box-shadow:0 0 0 3px rgba(196,217,62,0.2);"></div>
+                    <div style="font-size:8px; color:rgba(196,217,62,0.9); font-weight:600;">DF</div>
+                  </div>
+                  <!-- Porto Alegre -->
+                  <div style="position:absolute; left:32%; top:85%; display:flex; flex-direction:column; align-items:center; gap:2px;">
+                    <div style="width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.5);"></div>
+                    <div style="font-size:8px; color:rgba(184,197,208,0.7); font-weight:600;">RS</div>
+                  </div>
+                  <!-- Recife -->
+                  <div style="position:absolute; left:60%; top:32%; display:flex; flex-direction:column; align-items:center; gap:2px;">
+                    <div style="width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.5);"></div>
+                    <div style="font-size:8px; color:rgba(184,197,208,0.7); font-weight:600;">PE</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="body">
+                Leverage 15+ years of expertise navigating Brazil's regulatory landscape. We help biopharmaceutical companies
+                identify clinical trial sites, PIs, and patients across Brazil.
+              </div>
+
+              <ul class="bullets">
+                <li>Site &amp; PI identification</li>
+                <li>Patient recruitment</li>
+                <li>ANVISA regulatory support</li>
+                <li>Medical affairs strategy</li>
+              </ul>
+
+              <div class="foot">
+                <span class="tag">Brazil Trials</span>
+                <a class="btn" href="https://www.sambatrials.com" target="_blank" rel="noopener">
+                  Visit SambaTrials
+                </a>
+              </div>
+            </article>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        // Smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+      </div>
+    </div>
+  </header>
 
-        // Add subtle parallax effect on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-                hero.style.opacity = 1 - (scrolled / 600);
-            }
-        });
-    </script>
+  <!-- Founder -->
+  <section id="about" class="section" style="padding-top:18px;">
+    <div class="wrap">
+      <div class="sectionTitle">
+        <div>
+          <h2>About the Founder</h2>
+          <p>Same content — clearer scan & profile layout.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap;">
+        <img src="daniel.jpg" alt="Daniel Branco" style="width:96px; height:96px; border-radius:18px; object-fit:cover; border:1px solid var(--border); box-shadow:0 14px 28px rgba(0,0,0,.18); flex:0 0 auto;">
+        
+        <div style="flex:1; min-width:280px;">
+          <h2 style="margin:0;">Daniel Branco</h2>
+          <p style="margin:8px 0 0; color: rgba(184,197,208,.86); font-weight:600; font-size:14px;">
+            Founder, BioAlma &amp; Consaience
+          </p>
+          <p style="margin:14px 0 0; color: rgba(184,197,208,.92); line-height:1.6;">
+            Daniel is a biotech consultant with deep experience in clinical development intelligence,
+            competitive analysis, and AI-powered data platforms.
+            He's built intelligence systems for biotech companies ranging from pre-clinical startups to public pharma—
+            and now he's building them for you.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footRow">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <img src="consaience-icon.svg" alt="Consaience logo"
+               style="width:34px;height:34px;">
+          <div>
+            <div style="font-weight:900; letter-spacing:.08em; text-transform: lowercase; color: rgba(255,255,255,.92)">consaience</div>
+            <div style="font-size:12px;">© 2026 Consaience</div>
+          </div>
+        </div>
+
+        <div class="miniLinks">
+          <a href="#top">Back to top</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">Founder</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
